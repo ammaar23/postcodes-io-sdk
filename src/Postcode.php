@@ -36,7 +36,7 @@ class Postcode
      */
     public function __construct(array $config = [])
     {
-        $this->httpClient = new HttpClient(array_merge($this->config, $config));
+        $this->httpClient = new HttpClient(array_merge($config, $this->config));
     }
 
     /**
