@@ -27,11 +27,15 @@ try {
     echo $e->getMessage();
 }
 ```
+
 > You can catch specific `Ammaar23\Postcodes\PostcodeException` and/or catch general `\Exception` to catch any type.
 
 ### Methods
+
 #### Lookup a postcode
+
 Returns a single postcode entity for a given postcode (case, space insensitive).
+
 ```php
 // Definition
 function lookup(string $postcode): stdClass;
@@ -39,8 +43,11 @@ function lookup(string $postcode): stdClass;
 // Example
 $postcodeService->lookup('M60 2LA');
 ```
+
 #### Bulk lookup postcodes
+
 Returns a list of matching postcodes and respective available data.
+
 ```php
 // Definition
 function lookupBulk(array $postcodes, array $attributes = []): array;
@@ -52,9 +59,13 @@ $postcodeService->lookupBulk(
     ['postcode', 'longitude', 'latitude']
 );
 ```
-> `$attributes` (not required) is an array attributes to be returned in the result object(s).
+
+* `$attributes` (not required) is an array attributes to be returned in the result object(s).
+
 #### Reverse Geocoding
+
 Returns nearest postcodes for a given longitude and latitude.
+
 ```php
 // Definition
 function reverseGeocode(float $latitude, float $longitude, array $options = []): array;
@@ -66,20 +77,23 @@ $postcodeService->reverseGeocode(51.7923246977375, 0.629834723775309, [
     'radius' => 1000
 ]);
 ```
-> Maximum of 100 postcodes per request.
-`limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
-`radius` (not required) Limits number of postcodes matches to return. Defaults to 100m. Needs to be less than 2,000m.
+
+* Maximum of 100 postcodes per request.
+* `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
+* `radius` (not required) Limits number of postcodes matches to return. Defaults to 100m. Needs to be less than 2,000m.
 
 # Testing
 
 ```
 $ composer test
 ```
+
 OR with coverage:
+
 ```
 $ composer test-coverage
 ```
 
 # License
 MIT License
-&copy; 2019 &ndash; Ammaar Latif
+&copy; 2019 &ndash; [Ammaar Latif](https://twitter.com/ammaar23)
