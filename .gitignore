@@ -1,0 +1,10 @@
+/vendor
+/.idea
+/.vscode
+/.vagrant
+/docker
+/nbproject
+Homestead.json
+Homestead.yaml
+*.DS_Store
+/tests/coverage-report
