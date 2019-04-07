@@ -30,6 +30,20 @@ try {
 
 > You can catch specific `Ammaar23\Postcodes\PostcodeException` and/or catch general `\Exception` to catch any type.
 
+### Add/Modify Configuration Parameters
+
+You can look at [Guzzle HTTP Request Options](http://docs.guzzlephp.org/en/stable/request-options.html) to find out the availabe options.
+
+```php
+$postcodeService = new Postcode([
+    'headers' => [
+        'User-Agent' => 'testing/1.0',
+        'Accept' => 'application/json'
+    ],
+    'timeout' => 2.0
+]);
+```
+
 ### Methods
 
 #### Lookup a postcode
@@ -78,9 +92,113 @@ $postcodeService->reverseGeocode(51.7923246977375, 0.629834723775309, [
 ]);
 ```
 
-* Maximum of 100 postcodes per request.
 * `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
 * `radius` (not required) Limits number of postcodes matches to return. Defaults to 100m. Needs to be less than 2,000m.
+
+#### Bulk Reverse Geocoding
+
+Bulk translates geolocations into Postcodes.
+
+```php
+// Definition
+function reverseGeocodeBulk(array $geolocations, array $attributes = [], int $wideSearch = null): array;
+
+// Examples
+$postcodeService->reverseGeocodeBulk([
+    ['latitude' => 51.7923246977375, 'longitude' => 0.629834723775309],
+    ['latitude' => 53.5351312861402, 'longitude' => -2.49690382054704, 'radius' => 1000, 'limit' => 5]
+]);
+$postcodeService->reverseGeocodeBulk([
+    ['latitude' => 51.7923246977375, 'longitude' => 0.629834723775309],
+    ['latitude' => 53.5351312861402, 'longitude' => -2.49690382054704, 'radius' => 1000, 'limit' => 5]
+], ['postcode', 'longitude', 'latitude']);
+$postcodeService->reverseGeocodeBulk([
+    ['latitude' => 51.7923246977375, 'longitude' => 0.629834723775309],
+    ['latitude' => 53.5351312861402, 'longitude' => -2.49690382054704, 'radius' => 1000, 'limit' => 5]
+], ['postcode', 'longitude', 'latitude'], 1000);
+```
+
+* Maximum of 100 geolocations per request.
+* `$attributes` (not required) is an array attributes to be returned in the result object(s).
+* `$wideSearch` (not required) Search up to 20km radius, but subject to a maximum of 10 results.
+
+#### Random Postcode
+
+Returns a random postcode and all available data for that postcode.
+
+```php
+// Definition
+function random(array $options = []): stdClass;
+
+// Examples
+$postcodeService->random();
+$postcodeService->random([
+    'outcode' => 'M60'
+]);
+```
+
+* `outcode` (not required) Filters random postcodes by outcode. Returns null if invalid outcode.
+
+#### Validate a postcode
+
+Convenience method to validate a postcode.
+
+```php
+// Definition
+function validate(string $postcode): bool;
+
+// Example
+$postcodeService->validate('M60 2LA');
+```
+
+#### Nearest postcodes for postcode
+
+Returns nearest postcodes for a given postcode.
+
+```php
+// Definition
+function nearest(string $postcode, array $options = []): array;
+
+// Examples
+$postcodeService->nearest('M60 2LA');
+$postcodeService->nearest('M60 2LA', [
+    'limit' => 5,
+    'radius' => 1000
+]);
+```
+
+* `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
+* `radius` (not required) Limits number of postcodes matches to return. Defaults to 100m. Needs to be less than 2,000m.
+
+#### Autocomplete a postcode partial
+
+Convenience method to return an list of matching postcodes.
+
+```php
+// Definition
+function autocomplete(string $postcode, array $options = []): array;
+
+// Examples
+$postcodeService->autocomplete('M60');
+$postcodeService->autocomplete('M60', ['limit' => 5]);
+```
+
+* `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
+
+#### Query for postcode
+
+Submit a postcode query and receive a complete list of postcode matches and all associated postcode data. The result set can either be empty or populated with up to 100 postcode entities.
+
+```php
+// Definition
+function query(string $query, array $options = []): array|null;
+
+// Examples
+$postcodeService->query('M60 2LA');
+$postcodeService->query('M60 2LA', ['limit' => 5]);
+```
+
+* `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
 
 # Testing
 
