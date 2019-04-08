@@ -8,8 +8,9 @@ use GuzzleHttp\Psr7\Response;
 class PostcodeTest extends TestCase
 {
 
-    const POSTCODE_VALID = 'M602LA';
-    const POSTCODE_INVALID = 'M6002LA';
+    const POSTCODE_VALID = 'M60 2LA';
+    const POSTCODE_INVALID = 'M67 2LA';
+    const POSTCODE_INVALID_FORMAT = 'M600 2LA';
     const POSTCODE_PARTIAL = 'M60';
     const POSTCODES = ['OX49 5NU', 'NE30 1DP'];
     const ATTRIBUTES = ['postcode', 'longitude', 'latitude'];
@@ -102,6 +103,19 @@ class PostcodeTest extends TestCase
         $postcodeClass = new Postcode();
         $this->assertTrue($this->invokeMethod($postcodeClass, 'validate', [self::POSTCODE_VALID]));
         $this->assertFalse($this->invokeMethod($postcodeClass, 'validate', [self::POSTCODE_INVALID]));
+    }
+
+    /**
+     * A postcode validate format method test case.
+     * 
+     * @return void
+     */
+    public function testValidateFormat()
+    {
+        $postcodeClass = new Postcode();
+        $this->assertTrue($this->invokeMethod($postcodeClass, 'validateFormat', [self::POSTCODE_VALID]));
+        $this->assertTrue($this->invokeMethod($postcodeClass, 'validateFormat', [self::POSTCODE_INVALID]));
+        $this->assertFalse($this->invokeMethod($postcodeClass, 'validateFormat', [self::POSTCODE_INVALID_FORMAT]));
     }
 
     /**

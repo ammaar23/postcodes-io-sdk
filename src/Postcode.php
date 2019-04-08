@@ -131,6 +131,21 @@ class Postcode
     }
 
     /**
+     * Check if the given postcode has a valid UK postcode format or not.
+     * 
+     * @param string $postcode
+     * 
+     * @return bool
+     */
+    public function validateFormat(string $postcode): bool
+    {
+        $validFormats = ['AN NAA', 'ANN NAA', 'AAN NAA', 'AANN NAA', 'ANA NAA', 'AANA NAA'];
+        $dummyPostcode = preg_replace(['/[A-Z,a-z]/', '/[0-9]/', '/ /'], ['A', 'N', ''], $postcode);
+        $formattedPostcode = substr($dummyPostcode, 0, -3) . ' ' . substr($dummyPostcode, -3);
+        return in_array($formattedPostcode, $validFormats) || ($postcode === 'GIR 0AA');
+    }
+
+    /**
      * Returns nearest postcodes for a given postcode.
      * 
      * @param string $postcode
@@ -177,6 +192,7 @@ class Postcode
      * @param array $data
      * 
      * @return mixed
+     * @throws PostcodeException
      */
     private function makeRequest(string $endpoint, string $method = 'GET', array $data = [])
     {
