@@ -151,6 +151,20 @@ function validate(string $postcode): bool;
 $postcodeService->validate('M60 2LA');
 ```
 
+#### Validate a postcode format
+
+Convenience method to validate a postcode format.
+
+```php
+// Definition
+function validateFormat(string $postcode): bool;
+
+// Example
+$postcodeService->validateFormat('M60 2LA');
+```
+
+> `validateFormat` validates the format only where as `validate` check's if it exists in the Postcodes.io database or not.
+
 #### Nearest postcodes for postcode
 
 Returns nearest postcodes for a given postcode.
