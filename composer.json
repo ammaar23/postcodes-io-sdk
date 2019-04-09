@@ -37,6 +37,6 @@
             "vendor/bin/phpunit --coverage-html tests/coverage-report"
         ]
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
