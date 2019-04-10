@@ -34,8 +34,14 @@
         "test": [
             "vendor/bin/phpunit"
         ],
-        "test-coverage": [
-            "vendor/bin/phpunit --coverage-html tests/coverage-report"
+        "test-coverage-html": [
+            "vendor/bin/phpunit --coverage-html tests/coverage/html"
+        ],
+        "test-coverage-clover": [
+            "vendor/bin/phpunit --coverage-clover tests/coverage/xml"
+        ],
+        "codacy-coverage": [
+            "vendor/bin/codacycoverage clover tests/coverage/xml"
         ]
     },
     "minimum-stability": "stable",

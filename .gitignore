@@ -7,4 +7,4 @@
 Homestead.json
 Homestead.yaml
 *.DS_Store
-/tests/coverage-report
+/tests/coverage

@@ -16,7 +16,7 @@ install:
     - composer install --no-interaction --prefer-dist
 
 script:
-    - vendor/bin/phpunit
+    - composer test-coverage-clover
 
 after_script:
-    - vendor/bin/codacycoverage phpunit
+    - composer codacy-coverage
