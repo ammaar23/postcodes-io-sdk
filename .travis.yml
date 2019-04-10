@@ -15,4 +15,8 @@ before_install:
 install:
     - composer install --no-interaction --prefer-dist
 
-script: phpunit
+script:
+    - vendor/bin/phpunit
+
+after_script:
+    - vendor/bin/codacycoverage phpunit
