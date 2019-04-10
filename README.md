@@ -1,4 +1,4 @@
-# Postcodes.io PHP SDK [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f6509c33929c43b2bb672d010ac612d9)](https://www.codacy.com/app/ammaar23/postcodes-io-sdk?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ammaar23/postcodes-io-sdk&amp;utm_campaign=Badge_Grade) [![Build Status](https://travis-ci.org/ammaar23/postcodes-io-sdk.svg?branch=master)](https://travis-ci.org/ammaar23/postcodes-io-sdk) [![Latest Stable Version](https://poser.pugx.org/ammaar23/postcodes-io-sdk/v/stable.svg)](https://packagist.org/packages/ammaar23/postcodes-io-sdk) [![Total Downloads](https://poser.pugx.org/ammaar23/postcodes-io-sdk/downloads.svg)](https://packagist.org/packages/ammaar23/postcodes-io-sdk) [![License](https://poser.pugx.org/ammaar23/postcodes-io-sdk/license.svg)](https://packagist.org/packages/ammaar23/postcodes-io-sdk)
+# Postcodes.io PHP SDK [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/f6509c33929c43b2bb672d010ac612d9)](https://www.codacy.com/app/ammaar23/postcodes-io-sdk) [![Build Status](https://travis-ci.org/ammaar23/postcodes-io-sdk.svg?branch=master)](https://travis-ci.org/ammaar23/postcodes-io-sdk) [![Latest Stable Version](https://poser.pugx.org/ammaar23/postcodes-io-sdk/v/stable.svg)](https://packagist.org/packages/ammaar23/postcodes-io-sdk) [![Total Downloads](https://poser.pugx.org/ammaar23/postcodes-io-sdk/downloads.svg)](https://packagist.org/packages/ammaar23/postcodes-io-sdk) [![License](https://poser.pugx.org/ammaar23/postcodes-io-sdk/license.svg)](https://packagist.org/packages/ammaar23/postcodes-io-sdk)
 A simple PHP sdk for [Postcodes.io](https://postcodes.io)
 
 ## Install
@@ -74,7 +74,7 @@ $postcodeService->lookupBulk(
 );
 ```
 
-  * `$attributes` (not required) is an array attributes to be returned in the result object(s).
+* `$attributes` (not required) is an array attributes to be returned in the result object(s).
 
 #### Reverse Geocoding
 
@@ -92,8 +92,8 @@ $postcodeService->reverseGeocode(51.7923246977375, 0.629834723775309, [
 ]);
 ```
 
-  * `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
-  * `radius` (not required) Limits number of postcodes matches to return. Defaults to 100m. Needs to be less than 2,000m.
+* `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
+* `radius` (not required) Limits number of postcodes matches to return. Defaults to 100m. Needs to be less than 2,000m.
 
 #### Bulk Reverse Geocoding
 
@@ -118,9 +118,9 @@ $postcodeService->reverseGeocodeBulk([
 ], ['postcode', 'longitude', 'latitude'], 1000);
 ```
 
-  * Maximum of 100 geolocations per request.
-  * `$attributes` (not required) is an array attributes to be returned in the result object(s).
-  * `$wideSearch` (not required) Search up to 20km radius, but subject to a maximum of 10 results.
+* Maximum of 100 geolocations per request.
+* `$attributes` (not required) is an array attributes to be returned in the result object(s).
+* `$wideSearch` (not required) Search up to 20km radius, but subject to a maximum of 10 results.
 
 #### Random Postcode
 
@@ -137,7 +137,7 @@ $postcodeService->random([
 ]);
 ```
 
-  * `outcode` (not required) Filters random postcodes by outcode. Returns null if invalid outcode.
+* `outcode` (not required) Filters random postcodes by outcode. Returns null if invalid outcode.
 
 #### Validate a postcode
 
@@ -181,8 +181,8 @@ $postcodeService->nearest('M60 2LA', [
 ]);
 ```
 
-  * `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
-  * `radius` (not required) Limits number of postcodes matches to return. Defaults to 100m. Needs to be less than 2,000m.
+* `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
+* `radius` (not required) Limits number of postcodes matches to return. Defaults to 100m. Needs to be less than 2,000m.
 
 #### Autocomplete a postcode partial
 
@@ -197,7 +197,7 @@ $postcodeService->autocomplete('M60');
 $postcodeService->autocomplete('M60', ['limit' => 5]);
 ```
 
-  * `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
+* `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
 
 #### Query for postcode
 
@@ -212,7 +212,7 @@ $postcodeService->query('M60 2LA');
 $postcodeService->query('M60 2LA', ['limit' => 5]);
 ```
 
-  * `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
+* `limit` (not required) Limits number of postcodes matches to return. Defaults to 10. Needs to be less than 100.
 
 ## Testing
 
